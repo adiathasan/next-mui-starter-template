@@ -213,7 +213,7 @@ const Header = () => {
 														<li>
 															<SettingsIcon />
 														</li>
-														<li>Settings &amp; Privacy</li>
+														<li>Settings &amp; Privacy </li>
 														<li>
 															<ArrowForwardIosIcon />
 														</li>
