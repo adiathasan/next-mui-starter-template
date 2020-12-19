@@ -16,10 +16,22 @@ import {
 	IconButton,
 } from '@material-ui/core';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import MenuIcon from '@material-ui/icons/Menu';
+import AddIcon from '@material-ui/icons/Add';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import SettingsIcon from '@material-ui/icons/Settings';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import HelpIcon from '@material-ui/icons/Help';
+import Brightness3Icon from '@material-ui/icons/Brightness3';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import LockIcon from '@material-ui/icons/Lock';
+import LanguageIcon from '@material-ui/icons/Language';
+import WebIcon from '@material-ui/icons/Web';
 
 import { routes } from 'data/routes';
+import head from '../../css/header.module.css';
 
 function ElevationScroll(props) {
 	const { children } = props;
@@ -37,7 +49,7 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
 	toolbarMargin: {
 		...theme.mixins.toolbar,
-		marginBottom: `5em`,
+		marginBottom: `4.5em`,
 		[theme.breakpoints.down('md')]: {
 			marginBottom: '4em',
 		},
@@ -73,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 			color: theme.palette.info.main,
 		},
 	},
+	appBar: {},
 }));
 
 const Header = () => {
@@ -82,6 +95,10 @@ const Header = () => {
 	const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
 	const [openDrawer, setOpenDrawer] = useState(false);
+
+	const [openDrop, setOpenDrop] = useState(false);
+
+	const [active, setActive] = useState('main');
 
 	const router = useRouter();
 
@@ -161,12 +178,106 @@ const Header = () => {
 							maxWidth: '1280px',
 							margin: '0 auto',
 							width: '100%',
-							padding: matches ? '0 16px' : '24px',
+							padding: matches ? '0 16px' : '0 24px',
 						}}>
 						<Link href='/'>
 							<Typography className={classes.logo}>Material-UI</Typography>
 						</Link>
-						{matches ? drawer : tabs}
+						{matches ? (
+							drawer
+						) : (
+							<Grid container justify='flex-end'>
+								<nav className={head.root}>
+									<ul className={head.nav}>
+										<li>
+											<AddIcon />
+										</li>
+										<li>
+											<WhatsAppIcon />
+										</li>
+										<li>
+											<NotificationsIcon />
+										</li>
+										<li
+											onClick={() => {
+												setOpenDrop(!openDrop);
+											}}>
+											<ArrowDropDownIcon />
+										</li>
+									</ul>
+									{openDrop ? (
+										<div className={head.drop}>
+											{active === 'main' ? (
+												<div>
+													<ul onClick={() => setActive('settings')}>
+														<li>
+															<SettingsIcon />
+														</li>
+														<li>Settings &amp; Privacy</li>
+														<li>
+															<ArrowForwardIosIcon />
+														</li>
+													</ul>
+													<ul>
+														<li>
+															<HelpIcon />
+														</li>
+														<li>Help &amp; Support</li>
+														<li>
+															<ArrowForwardIosIcon />
+														</li>
+													</ul>
+
+													<ul>
+														<li>
+															<Brightness3Icon />
+														</li>
+														<li>Display &amp; Accessiblity</li>
+														<li>
+															<ArrowForwardIosIcon />
+														</li>
+													</ul>
+												</div>
+											) : (
+												<div>
+													{' '}
+													<ul onClick={() => setActive('main')}>
+														<li>
+															<ArrowBackIcon />
+														</li>
+														<li>Go Back</li>
+														<li></li>
+													</ul>
+													<ul>
+														<li>
+															<LockIcon />
+														</li>
+														<li>Privacy Shortcuts</li>
+														<li></li>
+													</ul>
+													<ul>
+														<li>
+															<WebIcon />
+														</li>
+														<li>Activity Log</li>
+														<li></li>
+													</ul>
+													<ul>
+														<li>
+															<LanguageIcon />
+														</li>
+														<li>Language</li>
+														<li></li>
+													</ul>
+												</div>
+											)}
+										</div>
+									) : (
+										''
+									)}
+								</nav>
+							</Grid>
+						)}
 					</Toolbar>
 				</AppBar>
 			</ElevationScroll>
@@ -175,4 +286,9 @@ const Header = () => {
 		</>
 	);
 };
+
+const NavItem = ({ icon }) => {
+	return <li>{icon}</li>;
+};
+
 export default Header;

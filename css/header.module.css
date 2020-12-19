@@ -1,0 +1,141 @@
+.root {
+	--bg: #242526;
+	--bg-accent: #484a4d;
+	--text-color: #dadce1;
+	--speed: 500ms;
+	--border: 1px solid #474a4d;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-self: flex-end;
+	gap: 1rem;
+	position: relative;
+}
+
+.nav li {
+	list-style: none;
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 50%;
+	background-color: var(--bg-accent);
+	transition: filter 300ms;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.nav li .MuiSvgIcon-root {
+	color: var(--text-color);
+}
+
+.nav li:hover {
+	filter: brightness(1.2);
+}
+
+.drop {
+	position: absolute;
+	top: 60px;
+	right: 20px;
+	width: 300px;
+	max-width: 100%;
+	border-radius: 10px;
+	background-color: var(--bg);
+	padding: 0.5rem;
+	border: 0.002rem solid var(--bg-accent);
+	overflow-y: auto;
+	overflow-x: hidden;
+    height: auto;
+    transition: all 0.4s ease-in;
+}
+
+.drop ul {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	cursor: pointer;
+	padding: 0.5rem;
+	border-radius: 10px;
+	animation: drop 300ms ease-in forwards;
+	transition: 0.4s ease-in all;
+}
+.drop ul:hover {
+	background-color: #474a4d6e;
+}
+
+.drop ul li {
+	list-style: none;
+}
+
+.drop ul li:first-child {
+	background-color: var(--bg-accent);
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.drop ul li:last-child {
+	margin-left: auto;
+}
+
+.drop div {
+	animation: drop 300ms ease-in forwards;
+}
+
+@keyframes drop {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* .drop .primary-enter {
+	position: absolute;
+	transform: translateX(-110%);
+}
+
+.drop .primary-enter-active {
+	transform: translateX(0%);
+	transition: var(--speed) all ease-in;
+}
+
+.drop .primary-exit {
+	position: absolute;
+}
+
+.drop .primary-exit-active {
+	transform: translateX(-110%);
+	transition: var(--speed) all ease-in;
+}
+
+.drop .secondary-enter {
+	position: absolute;
+	transform: translateX(110%);
+}
+
+.drop .secondary-enter-active {
+	transform: translateX(0%);
+	transition: var(--speed) all ease-in;
+}
+
+.drop .secondary-exit {
+	position: absolute;
+}
+
+.drop .secondary-exit-active {
+	transform: translateX(110%);
+	transition: var(--speed) all ease-in;
+}
+.drop .secondary-enter-done {
+	transform: translateX(110%);
+	transition: var(--speed) all ease-in;
+	background-color: var(--bg-accent);
+} */
